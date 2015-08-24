@@ -26,10 +26,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         updateNoiseImage()
     }
 
+    @IBAction func newPressed(sender: AnyObject) {
+        generator = PerlinGenerator()
+        updateNoiseImage()
+    }
+    
     func updateNoiseImage() {
         
         generator.octaves = Int(octavesSlider.value)
-        generator.zoom = octavesSlider.value
+        generator.zoom = zoomSlider.value
         generator.persistence = persistenceSlider.value
         
         var sizeX = CGFloat((sizeXtext.text as NSString).floatValue)
@@ -62,17 +67,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
-        
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sizeXtext.delegate = self
         sizeYtext.delegate = self
+        
+        //strech to fit but maintain aspect ratio
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        //use nearest neighbour, we want to see the pixels (not blur them)
+        imageView.layer.magnificationFilter = kCAFilterNearest
     }
 
     override func viewDidLayoutSubviews() {
@@ -83,7 +90,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             updateNoiseImage()
         }
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,6 +97,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    //
+    //   UITextFieldDelegate funcs
+    //
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

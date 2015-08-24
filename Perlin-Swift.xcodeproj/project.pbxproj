@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		733D7DBE1B8B536D00CBE0E2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733D7DBD1B8B536C00CBE0E2 /* QuartzCore.framework */; };
 		73BB3E151B8B10AF0075074C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BB3E141B8B10AF0075074C /* AppDelegate.swift */; };
 		73BB3E171B8B10AF0075074C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BB3E161B8B10AF0075074C /* ViewController.swift */; };
 		73BB3E1A1B8B10AF0075074C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73BB3E181B8B10AF0075074C /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		733D7DBD1B8B536C00CBE0E2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		73BB3E0F1B8B10AF0075074C /* Perlin-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Perlin-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73BB3E131B8B10AF0075074C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73BB3E141B8B10AF0075074C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				733D7DBE1B8B536D00CBE0E2 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 		73BB3E061B8B10AE0075074C = {
 			isa = PBXGroup;
 			children = (
+				733D7DBD1B8B536C00CBE0E2 /* QuartzCore.framework */,
 				73BB3E111B8B10AF0075074C /* Perlin-Swift */,
 				73BB3E271B8B10AF0075074C /* Perlin-SwiftTests */,
 				73BB3E101B8B10AF0075074C /* Products */,
@@ -415,6 +419,7 @@
 				73BB3E301B8B10AF0075074C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		73BB3E311B8B10AF0075074C /* Build configuration list for PBXNativeTarget "Perlin-SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +428,7 @@
 				73BB3E331B8B10AF0075074C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
