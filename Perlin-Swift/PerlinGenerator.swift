@@ -37,7 +37,7 @@ let PERMUTATION_SIZE = 256
 
 class PerlinGenerator {
     
-    static let gradient:[[Int]] = [
+    static let gradient:[[Int8]] = [
         [ 1, 1, 1, 0], [ 1, 1, 0, 1], [ 1, 0, 1, 1], [ 0, 1, 1, 1],
         [ 1, 1, -1, 0], [ 1, 1, 0, -1], [ 1, 0, 1, -1], [ 0, 1, 1, -1],
         [ 1, -1, 1, 0], [ 1, -1, 0, 1], [ 1, 0, -1, 1], [ 0, 1, -1, 1],
@@ -72,7 +72,7 @@ class PerlinGenerator {
             & 0x1f)
     }
     
-    func productOf(a:Float, b:Int) -> Float {
+    func productOf(a:Float, b:Int8) -> Float {
         if b > 0 {
             return a
         }
@@ -82,10 +82,10 @@ class PerlinGenerator {
         return 0
     }
     
-    func dotProductI(x0:Float, x1:Int,
-                     y0:Float, y1:Int,
-                     z0:Float, z1:Int,
-                     t0:Float, t1:Int) -> Float {
+    func dotProductI(x0:Float, x1:Int8,
+                     y0:Float, y1:Int8,
+                     z0:Float, z1:Int8,
+                     t0:Float, t1:Int8) -> Float {
             return self.productOf(x0, b: x1) +
                    self.productOf(y0, b: y1) +
                    self.productOf(z0, b: z1) +
@@ -124,8 +124,7 @@ class PerlinGenerator {
         let dt1 = t-Float(t1)
         
         // The 16 gradient values
-        let i0000 = self.gradientAt(x0, j: y0, k: z0, l: t0)
-        var g0000 = PerlinGenerator.gradient[i0000]
+        var g0000 = PerlinGenerator.gradient[self.gradientAt(x0, j: y0, k: z0, l: t0)]
         var g0001 = PerlinGenerator.gradient[self.gradientAt(x0, j: y0, k: z0, l: t1)]
         var g0010 = PerlinGenerator.gradient[self.gradientAt(x0, j: y0, k: z1, l: t0)]
         var g0011 = PerlinGenerator.gradient[self.gradientAt(x0, j: y0, k: z1, l: t1)]

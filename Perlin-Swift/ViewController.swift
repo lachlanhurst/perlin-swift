@@ -20,12 +20,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var imageView: UIImageView!
     
+    private var generator = PerlinGenerator()
+    
     @IBAction func aSliderChanged(sender: AnyObject) {
         updateNoiseImage()
     }
 
     func updateNoiseImage() {
-        var generator = PerlinGenerator()
+        
         generator.octaves = Int(octavesSlider.value)
         generator.zoom = octavesSlider.value
         generator.persistence = persistenceSlider.value
@@ -47,7 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         UIGraphicsBeginImageContextWithOptions(size, opaque, scale)
         let ctx = UIGraphicsGetCurrentContext()
         
-        CGContextSetRGBFillColor(ctx, 0.000, 0.0, 0.000, 1.000); // light blue
+        CGContextSetRGBFillColor(ctx, 1.000, 0.0, 0.000, 1.000); // light blue
         CGContextFillRect(ctx, CGRectMake(0.0, 0.0, size.width, size.height));
         for (var x:CGFloat = 0.0; x < size.width; x+=1.0) {
             for (var y:CGFloat=0.0; y < size.height; y+=1.0) {
@@ -76,8 +78,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLayoutSubviews() {
         if sizeXtext.text == "" {
             var size = self.imageView.bounds.size
-            sizeXtext.text = "\(Int(size.width/10))"
-            sizeYtext.text = "\(Int(size.height/10))"
+            sizeXtext.text = "\(Int(size.width/5))"
+            sizeYtext.text = "\(Int(size.height/5))"
             
             updateNoiseImage()
         }
