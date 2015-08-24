@@ -13,6 +13,7 @@
 		73BB3E1C1B8B10AF0075074C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73BB3E1B1B8B10AF0075074C /* Images.xcassets */; };
 		73BB3E1F1B8B10AF0075074C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73BB3E1D1B8B10AF0075074C /* LaunchScreen.xib */; };
 		73BB3E2B1B8B10AF0075074C /* Perlin_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BB3E2A1B8B10AF0075074C /* Perlin_SwiftTests.swift */; };
+		73BB3E351B8B10F90075074C /* PerlinGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BB3E341B8B10F90075074C /* PerlinGenerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		73BB3E241B8B10AF0075074C /* Perlin-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Perlin-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73BB3E291B8B10AF0075074C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73BB3E2A1B8B10AF0075074C /* Perlin_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perlin_SwiftTests.swift; sourceTree = "<group>"; };
+		73BB3E341B8B10F90075074C /* PerlinGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerlinGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				73BB3E1B1B8B10AF0075074C /* Images.xcassets */,
 				73BB3E1D1B8B10AF0075074C /* LaunchScreen.xib */,
 				73BB3E121B8B10AF0075074C /* Supporting Files */,
+				73BB3E341B8B10F90075074C /* PerlinGenerator.swift */,
 			);
 			path = "Perlin-Swift";
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73BB3E351B8B10F90075074C /* PerlinGenerator.swift in Sources */,
 				73BB3E171B8B10AF0075074C /* ViewController.swift in Sources */,
 				73BB3E151B8B10AF0075074C /* AppDelegate.swift in Sources */,
 			);
