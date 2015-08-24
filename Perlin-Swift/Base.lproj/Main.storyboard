@@ -35,19 +35,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="85" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="GdH-9U-WAq">
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="GdH-9U-WAq">
                                 <rect key="frame" x="122" y="22" width="464" height="31"/>
                                 <connections>
                                     <action selector="aSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="dws-cW-tVN"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.81999999999999995" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="cil-ZV-pv6">
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.90000000000000002" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="cil-ZV-pv6">
                                 <rect key="frame" x="122" y="58" width="464" height="31"/>
                                 <connections>
                                     <action selector="aSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="6SP-yg-4Jz"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="7" translatesAutoresizingMaskIntoConstraints="NO" id="ptr-JL-Ipx">
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="7" translatesAutoresizingMaskIntoConstraints="NO" id="ptr-JL-Ipx">
                                 <rect key="frame" x="122" y="94" width="464" height="31"/>
                                 <connections>
                                     <action selector="aSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="4hU-zl-cQ1"/>
