@@ -75,7 +75,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         CGContextFillRect(ctx, CGRectMake(0.0, 0.0, size.width, size.height));
         for (var x:CGFloat = 0.0; x < size.width; x+=1.0) {
             for (var y:CGFloat=0.0; y < size.height; y+=1.0) {
-                let val = generator.perlinNoise(Float(x), y: Float(y), z: 0, t: 0)
+                let val = generator.perlinNoise(Float(x), y: Float(y))
                 CGContextSetRGBFillColor(ctx, 1.0, 1.0, 1.0, CGFloat(abs(val)))
                 CGContextFillRect(ctx, CGRectMake(x, y, 1.0, 1.0));
             }
