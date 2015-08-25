@@ -64,7 +64,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     func generateNoiseImage(generator:PerlinGenerator, size:CGSize) -> UIImage {
+
+        var width = Int(size.width)
+        var height = Int(size.height)
         
+        var startTime = CFAbsoluteTimeGetCurrent();
+        
+        var pixelArray = [PixelData](count: width * height, repeatedValue: PixelData(a: 255, r:0, g: 0, b: 0))
+        
+        for var i = 0; i < height; i++ {
+            for var j = 0; j < width; j++ {
+                var val = abs(generator.perlinNoise(Float(j), y: Float(i), z: 0, t: 0))
+                if val > 1 {
+                    val = 1
+                }
+                let index = i * width + j
+                let u_I = UInt8(val * 255)
+                pixelArray[index].r = u_I
+                pixelArray[index].g = u_I
+                pixelArray[index].b = 0
+            }
+        }
+        let outputImage = imageFromARGB32Bitmap(pixelArray, width: width, height: height)
+        
+        println(" R RENDER:" + String(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
+        
+        return outputImage
+        
+        /*
         let bounds = CGRect(origin: CGPoint.zeroPoint, size: size)
         let opaque = false
         let scale: CGFloat = 0
@@ -83,7 +110,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image*/
     }
     
     override func viewDidLoad() {
@@ -126,5 +153,45 @@ class ViewController: UIViewController, UITextFieldDelegate {
         updateNoiseImage()
     }
 
+    //
+    //  drawing images from pixel data
+    //      http://blog.human-friendly.com/drawing-images-from-pixel-data-in-swift
+    //
+    struct PixelData {
+        var a:UInt8 = 255
+        var r:UInt8
+        var g:UInt8
+        var b:UInt8
+    }
+    
+    private let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+    private let bitmapInfo:CGBitmapInfo = CGBitmapInfo(CGImageAlphaInfo.PremultipliedFirst.rawValue)
+    
+    func imageFromARGB32Bitmap(pixels:[PixelData], width:Int, height:Int)->UIImage {
+        let bitsPerComponent:Int = 8
+        let bitsPerPixel:Int = 32
+        
+        assert(pixels.count == Int(width * height))
+        
+        var data = pixels // Copy to mutable []
+        let providerRef = CGDataProviderCreateWithCFData(NSData(bytes: &data, length: data.count * sizeof(PixelData)))
+        
+        let cgim = CGImageCreate(
+            width,
+            height,
+            bitsPerComponent,
+            bitsPerPixel,
+            width * Int(sizeof(PixelData)),
+            rgbColorSpace,
+            bitmapInfo,
+            providerRef,
+            nil,
+            false,
+            kCGRenderingIntentDefault
+        )
+        return UIImage(CGImage: cgim)!
+    }
+    
+    
 }
 
