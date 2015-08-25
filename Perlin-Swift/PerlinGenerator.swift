@@ -65,11 +65,7 @@ class PerlinGenerator {
     }
     
     func gradientAt(i:Int, j:Int) -> Int {
-        return (permut[(0 + permut[(0 + permut[(j + permut[i & 0xff])
-                                                & 0xff])
-                                    & 0xff])
-                       & 0xff]
-            & 0x1f)
+        return permut[(j + permut[i & 0xff]) & 0xff] & 0x1f
     }
     
     func productOf(a:Float, b:Int8) -> Float {
