@@ -53,12 +53,6 @@
                                     <action selector="aSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="4hU-zl-cQ1"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Size" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tU2-XA-sDx">
-                                <rect key="frame" x="-4" y="130" width="100" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkQ-vu-tFZ">
                                 <rect key="frame" x="88" y="132" width="22" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -85,8 +79,8 @@
                                 <rect key="frame" x="0.0" y="166" width="600" height="434"/>
                                 <color key="backgroundColor" red="1" green="0.55842013888888886" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTa-o9-KgC">
-                                <rect key="frame" x="10" y="126" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTa-o9-KgC">
+                                <rect key="frame" x="0.0" y="123" width="62" height="40"/>
                                 <state key="normal" title="New">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -94,6 +88,12 @@
                                     <action selector="newPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fMo-P0-TFt"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Size" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tU2-XA-sDx">
+                                <rect key="frame" x="56" y="132" width="39" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -111,10 +111,13 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="3Mv-6u-54C" id="vEC-8N-KgK"/>
+                        <outlet property="octavesLabel" destination="XhV-GP-QLc" id="L1t-mU-1Wz"/>
                         <outlet property="octavesSlider" destination="ptr-JL-Ipx" id="OFa-Wo-m1s"/>
+                        <outlet property="persistenceLabel" destination="mCu-T1-uqy" id="1Pg-JO-yq5"/>
                         <outlet property="persistenceSlider" destination="cil-ZV-pv6" id="v14-oM-dvq"/>
                         <outlet property="sizeXtext" destination="Amw-D4-pKR" id="ZJG-9h-KUr"/>
                         <outlet property="sizeYtext" destination="h2T-fi-zmO" id="wn8-aE-NgF"/>
+                        <outlet property="zoomLabel" destination="SQd-fu-p9b" id="BCS-Lm-dfD"/>
                         <outlet property="zoomSlider" destination="GdH-9U-WAq" id="amW-rB-79m"/>
                     </connections>
                 </viewController>

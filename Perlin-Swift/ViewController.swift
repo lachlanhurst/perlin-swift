@@ -11,6 +11,10 @@ import Foundation
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet var zoomLabel: UILabel!
+    @IBOutlet var persistenceLabel: UILabel!
+    @IBOutlet var octavesLabel: UILabel!
+    
     @IBOutlet var zoomSlider: UISlider!
     @IBOutlet var persistenceSlider: UISlider!
     @IBOutlet var octavesSlider: UISlider!
@@ -23,6 +27,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var generator = PerlinGenerator()
     
     @IBAction func aSliderChanged(sender: AnyObject) {
+        
+        let slider = sender as! UISlider
+        if slider === zoomSlider {
+            zoomLabel.textAlignment = NSTextAlignment.Left
+            zoomLabel.text = String(format: "Z = %.2f", slider.value)
+        } else if slider === persistenceSlider {
+            persistenceLabel.textAlignment = NSTextAlignment.Left
+            persistenceLabel.text = String(format: "P = %.2f", slider.value)
+        } else if slider === octavesSlider {
+            octavesLabel.textAlignment = NSTextAlignment.Left
+            octavesLabel.text = "O = \(Int(slider.value))"
+        }
+        
         updateNoiseImage()
     }
 
