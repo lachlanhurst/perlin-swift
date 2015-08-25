@@ -74,7 +74,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         for var i = 0; i < height; i++ {
             for var j = 0; j < width; j++ {
-                var val = abs(generator.perlinNoise(Float(j), y: Float(i), z: 0, t: 0))
+                var val = abs(generator.perlinNoise(Float(j), y: Float(i)))
                 if val > 1 {
                     val = 1
                 }
@@ -92,6 +92,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return outputImage
         
         /*
+        // works but slow
         let bounds = CGRect(origin: CGPoint.zeroPoint, size: size)
         let opaque = false
         let scale: CGFloat = 0
@@ -129,8 +130,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLayoutSubviews() {
         if sizeXtext.text == "" {
             var size = self.imageView.bounds.size
-            sizeXtext.text = "\(Int(size.width/5))"
-            sizeYtext.text = "\(Int(size.height/5))"
+            sizeXtext.text = "\(Int(size.width/3))"
+            sizeYtext.text = "\(Int(size.height/3))"
             
             updateNoiseImage()
         }
