@@ -85,9 +85,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 pixelArray[index].b = 0
             }
         }
-        let outputImage = imageFromARGB32Bitmap(pixelArray, width: width, height: height)
         
         println(" R RENDER:" + String(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
+        
+        let outputImage = imageFromARGB32Bitmap(pixelArray, width: width, height: height)
         
         return outputImage
         
