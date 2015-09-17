@@ -54,8 +54,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         generator.zoom = zoomSlider.value
         generator.persistence = persistenceSlider.value
         
-        var sizeX = CGFloat((sizeXtext.text as NSString).floatValue)
-        var sizeY = CGFloat((sizeYtext.text as NSString).floatValue)
+        var sizeX = CGFloat(NSString(string: sizeXtext.text!).floatValue)
+        var sizeY = CGFloat(NSString(string: sizeYtext.text!).floatValue)
         var size = CGSizeMake(sizeX, sizeY)
         
         var noise = generateNoiseImage(generator, size: size)
@@ -65,10 +65,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func generateNoiseImage(generator:PerlinGenerator, size:CGSize) -> UIImage {
 
-        var width = Int(size.width)
-        var height = Int(size.height)
+        let width = Int(size.width)
+        let height = Int(size.height)
         
-        var startTime = CFAbsoluteTimeGetCurrent();
+        let startTime = CFAbsoluteTimeGetCurrent();
         
         var pixelArray = [PixelData](count: width * height, repeatedValue: PixelData(a: 255, r:0, g: 0, b: 0))
         
@@ -87,7 +87,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         let outputImage = imageFromARGB32Bitmap(pixelArray, width: width, height: height)
         
-        println(" R RENDER:" + String(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
+        print(" R RENDER:" + String(format: "%.4f", CFAbsoluteTimeGetCurrent() - startTime));
         
         return outputImage
         
@@ -128,7 +128,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLayoutSubviews() {
         if sizeXtext.text == "" {
-            var size = self.imageView.bounds.size
+            let size = self.imageView.bounds.size
             sizeXtext.text = "\(Int(size.width/5))"
             sizeYtext.text = "\(Int(size.height/5))"
             
@@ -165,7 +165,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
-    private let bitmapInfo:CGBitmapInfo = CGBitmapInfo(CGImageAlphaInfo.PremultipliedFirst.rawValue)
+    private let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue)
     
     func imageFromARGB32Bitmap(pixels:[PixelData], width:Int, height:Int)->UIImage {
         let bitsPerComponent:Int = 8
@@ -187,9 +187,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             providerRef,
             nil,
             false,
-            kCGRenderingIntentDefault
+            CGColorRenderingIntent.RenderingIntentDefault
         )
-        return UIImage(CGImage: cgim)!
+        return UIImage(CGImage: cgim!)
     }
     
     

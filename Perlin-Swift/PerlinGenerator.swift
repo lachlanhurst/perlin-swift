@@ -93,8 +93,8 @@ class PerlinGenerator {
     }
     
     func spline(state:Float) -> Float{
-        var square = state * state
-        var cubic = square * state
+        let square = state * state
+        let cubic = square * state
         return cubic * (6 * square - 15 * state + 10)
     }
     
@@ -190,8 +190,8 @@ class PerlinGenerator {
         
         var noise:Float = 0.0
         for (var octave = 0; octave<self.octaves; octave++) {
-            var frequency:Float = powf(2,Float(octave))
-            var amplitude = powf(self.persistence, Float(octave))
+            let frequency:Float = powf(2,Float(octave))
+            let amplitude = powf(self.persistence, Float(octave))
             
             noise += self.smoothNoise(x * frequency/zoom,
                                       y: y * frequency/zoom,
