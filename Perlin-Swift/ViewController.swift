@@ -24,26 +24,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var imageView: UIImageView!
     
-    private var generator = PerlinGenerator()
+    fileprivate var generator = PerlinGenerator()
     
-    @IBAction func aSliderChanged(sender: AnyObject) {
+    @IBAction func aSliderChanged(_ sender: AnyObject) {
         
         let slider = sender as! UISlider
         if slider === zoomSlider {
-            zoomLabel.textAlignment = NSTextAlignment.Left
+            zoomLabel.textAlignment = NSTextAlignment.left
             zoomLabel.text = String(format: "Z = %.2f", slider.value)
         } else if slider === persistenceSlider {
-            persistenceLabel.textAlignment = NSTextAlignment.Left
+            persistenceLabel.textAlignment = NSTextAlignment.left
             persistenceLabel.text = String(format: "P = %.2f", slider.value)
         } else if slider === octavesSlider {
-            octavesLabel.textAlignment = NSTextAlignment.Left
+            octavesLabel.textAlignment = NSTextAlignment.left
             octavesLabel.text = "O = \(Int(slider.value))"
         }
         
         updateNoiseImage()
     }
 
-    @IBAction func newPressed(sender: AnyObject) {
+    @IBAction func newPressed(_ sender: AnyObject) {
         generator = PerlinGenerator()
         updateNoiseImage()
     }
@@ -54,26 +54,26 @@ class ViewController: UIViewController, UITextFieldDelegate {
         generator.zoom = zoomSlider.value
         generator.persistence = persistenceSlider.value
         
-        var sizeX = CGFloat(NSString(string: sizeXtext.text!).floatValue)
-        var sizeY = CGFloat(NSString(string: sizeYtext.text!).floatValue)
-        var size = CGSizeMake(sizeX, sizeY)
+        let sizeX = CGFloat(NSString(string: sizeXtext.text!).floatValue)
+        let sizeY = CGFloat(NSString(string: sizeYtext.text!).floatValue)
+        let size = CGSize(width: sizeX, height: sizeY)
         
-        var noise = generateNoiseImage(generator, size: size)
+        let noise = generateNoiseImage(generator, size: size)
         imageView.image = noise
     }
     
     
-    func generateNoiseImage(generator:PerlinGenerator, size:CGSize) -> UIImage {
+    func generateNoiseImage(_ generator:PerlinGenerator, size:CGSize) -> UIImage {
 
         let width = Int(size.width)
         let height = Int(size.height)
         
         let startTime = CFAbsoluteTimeGetCurrent();
         
-        var pixelArray = [PixelData](count: width * height, repeatedValue: PixelData(a: 255, r:0, g: 0, b: 0))
+        var pixelArray = [PixelData](repeating: PixelData(a: 255, r:0, g: 0, b: 0), count: width * height)
         
-        for var i = 0; i < height; i++ {
-            for var j = 0; j < width; j++ {
+        for i in 0 ..< height {
+            for j in 0 ..< width {
                 var val = abs(generator.perlinNoise(Float(j), y: Float(i), z: 0, t: 0))
                 if val > 1 {
                     val = 1
@@ -120,7 +120,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         sizeYtext.delegate = self
         
         //strech to fit but maintain aspect ratio
-        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        imageView.contentMode = UIViewContentMode.scaleAspectFit
         
         //use nearest neighbour, we want to see the pixels (not blur them)
         imageView.layer.magnificationFilter = kCAFilterNearest
@@ -131,11 +131,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let size = self.imageView.bounds.size
             sizeXtext.text = "\(Int(size.width/5))"
             sizeYtext.text = "\(Int(size.height/5))"
-            
-            updateNoiseImage()
         }
     }
-    
+
+    override func viewDidAppear(_ animated: Bool) {
+        updateNoiseImage()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -144,12 +146,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //
     //   UITextFieldDelegate funcs
     //
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         updateNoiseImage()
     }
 
@@ -164,32 +166,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
         var b:UInt8
     }
     
-    private let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
-    private let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue)
+    fileprivate let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+    fileprivate let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
     
-    func imageFromARGB32Bitmap(pixels:[PixelData], width:Int, height:Int)->UIImage {
+    func imageFromARGB32Bitmap(_ pixels:[PixelData], width:Int, height:Int)->UIImage {
         let bitsPerComponent:Int = 8
         let bitsPerPixel:Int = 32
         
         assert(pixels.count == Int(width * height))
         
         var data = pixels // Copy to mutable []
-        let providerRef = CGDataProviderCreateWithCFData(NSData(bytes: &data, length: data.count * sizeof(PixelData)))
+        let bdata = Data(bytes: &data, count: data.count * MemoryLayout<PixelData>.size)
+
+        let providerRef = CGDataProvider(data: bdata as CFData)
         
-        let cgim = CGImageCreate(
-            width,
-            height,
-            bitsPerComponent,
-            bitsPerPixel,
-            width * Int(sizeof(PixelData)),
-            rgbColorSpace,
-            bitmapInfo,
-            providerRef,
-            nil,
-            false,
-            CGColorRenderingIntent.RenderingIntentDefault
+        let cgim = CGImage(
+            width: width,
+            height: height,
+            bitsPerComponent: bitsPerComponent,
+            bitsPerPixel: bitsPerPixel,
+            bytesPerRow: width * Int(MemoryLayout<PixelData>.size),
+            space: rgbColorSpace,
+            bitmapInfo: bitmapInfo,
+            provider: providerRef!,
+            decode: nil,
+            shouldInterpolate: false,
+            intent: CGColorRenderingIntent.defaultIntent
         )
-        return UIImage(CGImage: cgim!)
+        return UIImage(cgImage: cgim!)
     }
     
     

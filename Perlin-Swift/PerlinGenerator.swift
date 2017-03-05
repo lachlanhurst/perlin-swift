@@ -56,15 +56,15 @@ class PerlinGenerator {
     
     init(){
         permut = []
-        for var i = 0; i < PERMUTATION_SIZE; i++ {
-            permut.append(Int(rand() & 0xff))
+        for _ in 0 ..< PERMUTATION_SIZE {
+            permut.append(Int(arc4random() & 0xff))
         }
         octaves = 1
         persistence = 1.0
         zoom = 1.0
     }
     
-    func gradientAt(i:Int, j:Int, k:Int, l:Int) -> Int {
+    func gradientAt(_ i:Int, j:Int, k:Int, l:Int) -> Int {
         return (permut[(l + permut[(k + permut[(j + permut[i & 0xff])
                                                 & 0xff])
                                     & 0xff])
@@ -72,7 +72,7 @@ class PerlinGenerator {
             & 0x1f)
     }
     
-    func productOf(a:Float, b:Int8) -> Float {
+    func productOf(_ a:Float, b:Int8) -> Float {
         if b > 0 {
             return a
         }
@@ -82,7 +82,7 @@ class PerlinGenerator {
         return 0
     }
     
-    func dotProductI(x0:Float, x1:Int8,
+    func dotProductI(_ x0:Float, x1:Int8,
                      y0:Float, y1:Int8,
                      z0:Float, z1:Int8,
                      t0:Float, t1:Int8) -> Float {
@@ -92,17 +92,17 @@ class PerlinGenerator {
                    self.productOf(t0, b: t1)
     }
     
-    func spline(state:Float) -> Float{
+    func spline(_ state:Float) -> Float{
         let square = state * state
         let cubic = square * state
         return cubic * (6 * square - 15 * state + 10)
     }
     
-    func interpolate(a:Float, b:Float, x:Float) -> Float {
+    func interpolate(_ a:Float, b:Float, x:Float) -> Float {
         return a + x*(b-a)
     }
     
-    func smoothNoise(x:Float, y:Float, z:Float, t:Float) -> Float {
+    func smoothNoise(_ x:Float, y:Float, z:Float, t:Float) -> Float {
         let x0 = Int(x > 0 ? x : x - 1)
         let y0 = Int(y > 0 ? y : y - 1)
         let z0 = Int(z > 0 ? z : z - 1)
@@ -186,10 +186,10 @@ class PerlinGenerator {
         return result;
     }
     
-    func perlinNoise(x:Float, y:Float, z:Float, t:Float) -> Float{
+    func perlinNoise(_ x:Float, y:Float, z:Float, t:Float) -> Float{
         
         var noise:Float = 0.0
-        for (var octave = 0; octave<self.octaves; octave++) {
+        for octave in 0 ..< self.octaves {
             let frequency:Float = powf(2,Float(octave))
             let amplitude = powf(self.persistence, Float(octave))
             
